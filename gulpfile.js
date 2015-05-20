@@ -9,7 +9,7 @@ var $gulp = require('gulp'),
 	$case = require('change-case');
 
 $gulp.task('clean', function(done) {
-	del('./public', done);
+	$del('./public', done);
 });
 
 $gulp.task('icons', function() {
@@ -18,7 +18,7 @@ $gulp.task('icons', function() {
 	])
 		.pipe($g.flatten())
 		.pipe($g.rename(function(path) {
-			path.basename = path.basename.match(/^ic(.+)_48px/)[1];
+			path.basename = path.basename.match(/^ic_(.+)_48px/)[1];
 		}))
 		.pipe($gulp.dest('public/ico'));
 });
@@ -29,6 +29,8 @@ $gulp.task('libs', ['icons'], function() {
 		'angular*/*.min.js.map',
 		'angular*/dist/*.min.js',
 		'angular*/dist/*.min.js.map',
+		'angular*/build/*.min.js',
+		'ui-router*/release/*.min.js',
 		'systemjs/dist/system.js',
 		'systemjs/dist/system.js.map',
 		'systemjs/node_*/es6-*/dist/*-loader.js',
@@ -47,7 +49,7 @@ $gulp.task('js', function() {
 		.pipe($g.babel({
 			stage: 0,
 			modules: 'system',
-			moduleId: true
+			moduleIds: true
 		}))
 		.pipe($gulp.dest('public'));
 });
@@ -57,12 +59,13 @@ $gulp.task('html', function() {
 		cwd: './src'
 	})
 		.pipe($g.inject($gulp.src([
-
+			'lib/angular.min.js',
+			'lib/*.js'
 		], {
 			read: false,
 			cwd: './public'
 		})))
-		.pipe(gulp.dest('public'));
+		.pipe($gulp.dest('public'));
 });
 
 $gulp.task('css', function(done) {
