@@ -1,32 +1,53 @@
 <!doctype html>
-<html ng-cloak ng-strict-di ng-controller="AppCtrl as App">
+<html ng-controller="AppCtrl as App" ng-cloak>
 	<head>
-		<title></title>
 		<link rel="stylesheet" type="text/css" href="/index.css">
 		<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=RobotoDraft:300,400,500,700,400italic">
-		<meta name="viewport" content="initial-scale=1" />
+
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta name="viewport" content="width = device-width, minimal-ui, initial-scale = 1, user-scalable = no" />
+		<title ng-bind="$ctrl.$title"></title>
+		<base href="/" />
+		<style>
+			[ng-cloak] {
+				display: none;
+			}
+		</style>
 	</head>
-	<body ng-class="" layout="column">
-		<md-toolbar>
-			<div class="md-toolbar-tools">
-			<md-button class="md-icon-button" aria-label="Menu" ng-click="">
-				<md-icon md-svg-icon="ico/menu.svg"></md-icon>
-			</md-button>
-			</div>
+	<body class="{{$state.current.name}}" layout="column">
+		<md-toolbar
+			ng-include="'global/toolbar/toolbar.html'"
+			ng-controller="ToolbarCtrl as Toolbar">
 		</md-toolbar>
 		<md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left">
-			<md-content layout="column"></md-content>
+			<md-content
+				layout="column"
+				ng-include="'global/sidenav/sidenav.html'"
+				ng-controller="SidenavCtrl as Sidenav">
+			</md-content>
 		</md-sidenav>
-		<md-content flex layout-padding></md-content>
+		<md-content flex layout-padding ui-view></md-content>
+		<md-button
+				ng-if="$ctrl.$fab && (!$ctrl.$fab.if || $ctrl.$fab.if())"
+				ng-class="$ctrl.$fab.class"
+				ng-click="$ctrl.$fab.click($event)"
+				aria-label="{{$ctrl.$fab.label}}"
+				class="md-fab md-fab-bottom-right">
+			<md-icon ng-if="$ctrl.$fab.icon" md-svg-src="ico/{{$ctrl.$fab.icon}}.svg"></md-icon>
+		</md-button>
+		<md-progress-circular
+			class="app-loading"
+			md-mode="indeterminate"
+			ng-if="App.$loading">
+		</md-progress-circular>
 
-		<!-- inject:js -->
-		<!-- endinject -->
+		<script src="/lib/system.js"></script>
+		<script src="/config.js"></script>
 		<script>
-			System.import('index').then(function() {
-				angular.element(document).ready(function() {
-					angular.bootstrap(document, ['app']);
-				});
-			});
+			System
+				.import('index')
+				.catch(console.error.bind(console));
 		</script>
 	</body>
 </html>

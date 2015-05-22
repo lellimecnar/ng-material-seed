@@ -28,6 +28,14 @@ $app.use($lazyRest());
 $app.use($express.static('./public'));
 $app.use('/files', $express.static('./uploads/api'));
 
+$app.all('/*', function(req, res, next) {
+	if (req.headers.accept.indexOf('text/html') >= 0) {
+	    res.sendFile('index.html', { root: './public' });
+	} else {
+		res.sendFile(req.path);
+	}
+});
+
 $app.listen(8080, function() {
 	console.log('Listening at localhost:8080');
 });

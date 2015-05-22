@@ -6,7 +6,9 @@ var $gulp = require('gulp'),
 	$path = require('path'),
 	$sync = $g.sync($gulp).sync,
 	$ext = require('replace-ext'),
-	$case = require('change-case');
+	$case = require('change-case'),
+
+	server = $g.liveServer.new('./server.js');
 
 $gulp.task('clean', function(done) {
 	$del('./public', done);
@@ -23,24 +25,9 @@ $gulp.task('icons', function() {
 		.pipe($gulp.dest('public/ico'));
 });
 
-$gulp.task('libs', ['icons'], function() {
-	return $gulp.src([
-		'angular*/*.min.js',
-		'angular*/*.min.js.map',
-		'angular*/dist/*.min.js',
-		'angular*/dist/*.min.js.map',
-		'angular*/build/*.min.js',
-		'ui-router*/release/*.min.js',
-		'systemjs/dist/system.js',
-		'systemjs/dist/system.js.map',
-		'systemjs/node_*/es6-*/dist/*-loader.js',
-		'systemjs/node_*/es6-*/dist/*-loader.js.map'
-	], {
-		cwd: './node_modules'
-	})
-		.pipe($g.flatten())
-		.pipe($gulp.dest('public/lib'));
-});
+$gulp.task('lib', ['icons'], $g.shell.task([
+	'jspm install'
+]));
 
 $gulp.task('js', function() {
 	return $gulp.src('**/*.js', {
@@ -51,6 +38,10 @@ $gulp.task('js', function() {
 			modules: 'system',
 			moduleIds: true
 		}))
+		.pipe($g.addSrc('./config.js'))
+		.pipe($g.addSrc('**/*.json', {
+			cwd: './src'
+		}))
 		.pipe($gulp.dest('public'));
 });
 
@@ -58,13 +49,6 @@ $gulp.task('html', function() {
 	return $gulp.src('**/*.html', {
 		cwd: './src'
 	})
-		.pipe($g.inject($gulp.src([
-			'lib/angular.min.js',
-			'lib/*.js'
-		], {
-			read: false,
-			cwd: './public'
-		})))
 		.pipe($gulp.dest('public'));
 });
 
@@ -73,12 +57,8 @@ $gulp.task('css', function(done) {
 		.pipe($g.stylus({
 			'include css': true,
 			use: require('nib')(),
-			include: [
-				'./node_modules/angular-material'
-			],
 			import: [
 				'nib',
-				'angular-material.css',
 				'./src/**/*.styl'
 			]
 		}))
@@ -87,20 +67,24 @@ $gulp.task('css', function(done) {
 });
 
 $gulp.task('serve', function(done) {
-	$g.express.run(['./server.js']);
+	server.start();
 	done();
 });
 
 $gulp.task('watch', ['serve'], function(done) {
-	$gulp.watch('./src/**/*.js', ['js']);
+	$gulp.watch(['./src/**/*.js', './src/**/*.json'], ['js']);
 	$gulp.watch('./src/**/*.styl', ['css']);
 	$gulp.watch('./src/**/*.html', ['html']);
 
-	$gulp.watch('./public/**/*', $g.express.notify);
+	$gulp.watch('./public/**/*', server.notify);
+
+	$gulp.watch('./server.js', server.start);
 
 	done();
 });
 
 $gulp.task('build', ['js', 'css', 'html']);
 
-$gulp.task('default', $sync(['clean', 'libs', 'build', 'serve']));
+$gulp.task('dev', $sync(['clean', 'lib', 'build', 'watch']));
+
+$gulp.task('default', $sync(['clean', 'lib', 'build', 'serve']));

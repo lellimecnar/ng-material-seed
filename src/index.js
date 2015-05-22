@@ -1,21 +1,25 @@
-import * as $services from 'global/services/services';
-import * as $directives from 'global/directives/directives';
-import * as $app from 'global/app/app';
-import * as $components from 'components/components';
+import angular from 'angular';
+import ngMaterial from 'angular-material';
 
-var app = angular.module('app', $app.dependencies)
-			.config($app.config);
+import { AppCtrl } from 'global/app/app';
+import config from 'global/app/config';
+import run from 'global/app/run';
+import routes from 'global/app/routes.json!';
 
-angular.forEach($services, function(service, name) {
-	app.service(name, service);
+import { SidenavCtrl } from 'global/sidenav/sidenav';
+import { ToolbarCtrl } from 'global/toolbar/toolbar';
+
+export var appModule = angular.module('app', [
+		ngMaterial
+	])
+	.config(config(routes))
+	.run(run())
+	.controller('AppCtrl', AppCtrl)
+	.controller('SidenavCtrl', SidenavCtrl)
+	.controller('ToolbarCtrl', ToolbarCtrl);
+
+angular.element(document).ready(function() {
+	return angular.bootstrap(document, [appModule.name], {
+		strictDi: true
+	});
 });
-
-angular.forEach($components, function(controller, name) {
-	app.controller(name, controller);
-});
-
-angular.forEach($directives, function(directive) {
-	app.directive(directive.$selector, directive);
-});
-
-app.controller('AppCtrl', $app.AppCtrl);

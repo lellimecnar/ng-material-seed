@@ -1,19 +1,14 @@
-import { $routeConfig } from './routes';
-
-export { config } from './config';
-
-export var dependencies = [
-	'ui.router',
-	'ngAnimate',
-	'ngAria',
-	'ngMaterial',
-	'ngResource'
-];
-
 export class AppCtrl {
+	$loading = true;
 
-	static $inject = [];
-	constructor() {
+	static $inject = ['$rootScope'];
+	constructor($rootScope) {
+		$rootScope.$on('$stateChangeStart', () => {
+			this.$loading = true;
+		});
 
+		$rootScope.$on('$stateChangeSuccess', () => {
+			this.$loading = false;
+		});
 	}
 }

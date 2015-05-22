@@ -1,0 +1,24 @@
+<div class="md-toolbar-tools">
+	<md-button
+			ng-if="$nav && !$nav.if || $nav.if()"
+			ng-class="$nav.class()"
+			class="md-icon-button"
+			aria-label="{{$nav.label}}"
+			ng-click="$nav.click($event)">
+		<md-icon ng-if="$nav.icon" md-svg-icon="ico/{{$nav.icon}}.svg"></md-icon>
+	</md-button>
+	<h2 ng-bind="$ctrl.$title"></h2>
+	<span flex></span>
+	<md-button
+			ng-repeat="action in $ctrl.$actions"
+			aria-label="{{action.label}}"
+			ng-class="action.class()"
+			ng-click="action.click($event)"
+			ng-disabled="action.disabled()"
+			class="md-icon-button">
+		<md-icon
+				ng-if="action.icon"
+				md-svg-icon="ico/{{action.icon}}.svg"></md-icon>
+		<span ng-if="!action.icon">{{action.label}}</span>
+	</md-button>
+</div>

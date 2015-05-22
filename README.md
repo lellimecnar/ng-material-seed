@@ -1,1 +1,1 @@
-# rummage-app
+# ng-material-seed
