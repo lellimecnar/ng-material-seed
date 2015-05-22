@@ -9,6 +9,10 @@ var $express = require('express'),
 	$path = require('path'),
 	$mkdir = require('mkdirp').sync;
 
+process.on('uncaughtException', function (err) {
+  console.log('Caught exception: ' + err);
+});
+
 $app.use($express.static('public'));
 $app.use($bodyParser.json());
 $app.use($multer({
@@ -36,6 +40,9 @@ $app.all('/*', function(req, res, next) {
 	}
 });
 
-$app.listen(8080, function() {
-	console.log('Listening at localhost:8080');
+var server = $app.listen(8080, 'localhost', function() {
+	var host = server.address().address,
+		port = server.address().port;
+
+	console.log('Listening at http://%s:%s', host, port);
 });
