@@ -20,12 +20,15 @@
   "homepage": "https://github.com/lellimecnar/rummager-app",
   "dependencies": {
     "body-parser": "^1.12.4",
+    "crypto": "0.0.3",
     "express": "^4.12.4",
     "gulp-live-server": "0.0.14",
     "lazy-rest": "^0.4.3",
     "mkdirp": "^0.5.1",
     "mongoose": "^4.0.3",
-    "multer": "^0.1.8"
+    "multer": "^0.1.8",
+    "passport": "^0.2.2",
+    "passport-local": "^1.0.0"
   },
   "devDependencies": {
     "change-case": "^2.3.0",

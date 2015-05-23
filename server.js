@@ -3,7 +3,7 @@ var $express = require('express'),
 	$bodyParser = require('body-parser'),
 	$multer = require('multer'),
 	$mongoose = require('mongoose'),
-	db = $mongoose.connect('mongodb://localhost:27017/rummager'),
+	db = $mongoose.connect('mongodb://localhost:27017/ng-material-start'),
 	$lazyRest = require('lazy-rest')($app, db),
 
 	$path = require('path'),
@@ -24,19 +24,25 @@ $app.use($multer({
 		return path;
 	}
 }));
+
 $app.use($bodyParser.urlencoded({
 	extended: true
 }));
 
 $app.use($lazyRest());
+
 $app.use($express.static('./public'));
 $app.use('/files', $express.static('./uploads/api'));
 
 $app.all('/*', function(req, res, next) {
-	if (req.headers.accept.indexOf('text/html') >= 0) {
-	    res.sendFile('index.html', { root: './public' });
+	if (req.path.split('/').indexOf('api') >= 0) {
+		next();
 	} else {
-		res.sendFile(req.path);
+		if (req.headers.accept.indexOf('text/html') >= 0) {
+		    res.sendFile('index.html', { root: './public' });
+		} else {
+			res.sendFile(req.path);
+		}
 	}
 });
 

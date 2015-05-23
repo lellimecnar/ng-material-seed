@@ -9,7 +9,7 @@ export class HomeCtrl {
 
 	$actions = [
 		{
-			label: 'Settings',
+			label: 'More',
 			icon: 'more_vert',
 			menu: [
 				{

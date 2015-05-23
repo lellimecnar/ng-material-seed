@@ -30,7 +30,7 @@ angular.forEach(directives, function(factory) {
 
 angular.forEach(services, function(service, name) {
 	appModule.service(name, service);
-})
+});
 
 angular.element(document).ready(function() {
 	return angular.bootstrap(document, [appModule.name], {
