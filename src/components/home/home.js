@@ -10,8 +10,15 @@ export class HomeCtrl {
 	$actions = [
 		{
 			label: 'Settings',
-			icon: 'settings',
-			click: this.actionClick.bind(this)
+			icon: 'more_vert',
+			menu: [
+				{
+					label: 'An item',
+					click: function() {
+						console.log('item clicked');
+					}
+				}
+			]
 		}
 	];
 
@@ -19,7 +26,7 @@ export class HomeCtrl {
 
 	static $inject = [];
 	constructor() {
-
+		
 	}
 
 	actionClick(e) {

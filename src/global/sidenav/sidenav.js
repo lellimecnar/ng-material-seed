@@ -3,7 +3,8 @@ export class SidenavCtrl {
 		{
 			label: 'Home',
 			state: 'home',
-			icon: 'home'
+			icon: 'home',
+			click: this.homeClick.bind(this)
 		}
 	];
 
@@ -14,5 +15,9 @@ export class SidenavCtrl {
 
 	close() {
 		this.$mdSidenav('left').close();
+	}
+
+	homeClick() {
+		console.log('home clicked');
 	}
 }

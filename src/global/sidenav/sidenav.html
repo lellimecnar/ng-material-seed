@@ -1,6 +1,6 @@
 <md-list-item 
 		ng-repeat="item in Sidenav.menuItems"
-		ng-click="Sidenav.close() && item.click($event)">
+		ng-click="Sidenav.close(); item.click($event)">
 	<md-icon ng-if="item.icon" md-svg-icon="ico/{{item.icon}}.svg"></md-icon>
 	<p>{{item.label}}</p>
 </md-list-item>

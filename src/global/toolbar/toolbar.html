@@ -10,6 +10,7 @@
 	<h2 ng-bind="$ctrl.$title"></h2>
 	<span flex></span>
 	<md-button
+			ng-if="!action.menu"
 			ng-repeat="action in $ctrl.$actions"
 			aria-label="{{action.label}}"
 			ng-class="action.class()"
@@ -20,5 +21,25 @@
 				ng-if="action.icon"
 				md-svg-icon="ico/{{action.icon}}.svg"></md-icon>
 		<span ng-if="!action.icon">{{action.label}}</span>
+		<md-tooltip>{{action.label}}</md-tooltip>
 	</md-button>
+	<md-dropmenu ng-if="action.menu" ng-repeat="action in $ctrl.$actions">
+		<md-drop-label>
+			<md-button
+					aria-label="{{action.label}}"
+					ng-class="action.class()"
+					ng-click="action.click($event)"
+					ng-disabled="action.disabled()"
+					class="md-icon-button">
+				<md-icon
+						ng-if="action.icon"
+						md-svg-icon="ico/{{action.icon}}.svg"></md-icon>
+				<span ng-if="!action.icon">{{action.label}}</span>
+				<md-tooltip>{{action.label}}</md-tooltip>
+			</md-button>
+		</md-drop-label>
+		<md-drop-option
+			ng-repeat="item in action.menu"
+			ng-click="item.click($event)">{{item.label}}</md-drop-option>
+	</md-dropmenu>
 </div>
