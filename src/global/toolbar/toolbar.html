@@ -21,7 +21,7 @@
 				ng-if="action.icon"
 				md-svg-icon="ico/{{action.icon}}.svg"></md-icon>
 		<span ng-if="!action.icon">{{action.label}}</span>
-		<md-tooltip>{{action.label}}</md-tooltip>
+		<md-tooltip md-delay="750">{{action.label}}</md-tooltip>
 	</md-button>
 	<md-dropmenu ng-if="action.menu" ng-repeat="action in $ctrl.$actions">
 		<md-drop-label>
@@ -35,7 +35,7 @@
 						ng-if="action.icon"
 						md-svg-icon="ico/{{action.icon}}.svg"></md-icon>
 				<span ng-if="!action.icon">{{action.label}}</span>
-				<md-tooltip>{{action.label}}</md-tooltip>
+				<md-tooltip md-delay="750">{{action.label}}</md-tooltip>
 			</md-button>
 		</md-drop-label>
 		<md-drop-option
