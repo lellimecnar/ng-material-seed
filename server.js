@@ -1,20 +1,20 @@
 var $express = require('express'),
 	$app = $express(),
-	$bodyParser = require('body-parser'),
+	$favicon = require('express-favicon'),
 	$multer = require('multer'),
-	$mongoose = require('mongoose'),
-	db = $mongoose.connect('mongodb://localhost:27017/ng-material-start'),
-	$lazyRest = require('lazy-rest')($app, db),
+	$lazyRest = require('lazy-rest')($app);
 
 	$path = require('path'),
 	$mkdir = require('mkdirp').sync;
 
 process.on('uncaughtException', function (err) {
-  console.log('Caught exception: ' + err);
+	console.error(err.stack);
 });
 
+$app.use($favicon('./favicon.ico'));
+
 $app.use($express.static('public'));
-$app.use($bodyParser.json());
+
 $app.use($multer({
 	dest: './uploads',
 	changeDest: function(dest, req, res) {
@@ -25,13 +25,32 @@ $app.use($multer({
 	}
 }));
 
-$app.use($bodyParser.urlencoded({
-	extended: true
+$app.use('/api', $lazyRest.db({
+	db: 'ng-material-start'
 }));
 
-$app.use($lazyRest());
+$app.use('/api', $lazyRest.auth({
+	sessionSecret: 'Session Secret',
+	UserSchema: {
+		firstName: {
+			type: String,
+			required: true
+		},
+		lastName: {
+			type: String,
+			required: true
+		},
+		joined: {
+			type: Date,
+			default: Date.now
+		}
+	}
+}));
 
-$app.use($express.static('./public'));
+$app.use('/api', $lazyRest.router());
+
+
+$app.use('/', $express.static('./public'));
 $app.use('/files', $express.static('./uploads/api'));
 
 $app.all('/*', function(req, res, next) {

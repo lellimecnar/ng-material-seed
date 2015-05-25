@@ -24,9 +24,19 @@ export class HomeCtrl {
 
 	items = ['A', 'B', 'C', 'D', 'E'];
 
-	static $inject = [];
-	constructor() {
-		
+	static $inject = ['User'];
+	constructor(User) {
+		User.checkUsername({
+			username: 'lellimecnar'
+		}, function(result) {
+			console.log(result);
+		});
+
+		// User.get({
+		// 	username: 'lellimecnar'
+		// }, function(result) {
+		// 	console.log(result);
+		// });
 	}
 
 	actionClick(e) {
