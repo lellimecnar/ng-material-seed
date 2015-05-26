@@ -1,0 +1,1 @@
+export checkUsername from './directives/checkUsername';

@@ -1,8 +1,50 @@
+body {
+	> md-content {
+		background-color: #f5f5f5 !important;
+	}
+}
+
 md-progress-circular {
 	&.app-loading {
 		position: fixed;
 		top: 50%;
 		left: 50%;
 		transform: translate3d(-50%, -50%, 0) !important;
+	}
+}
+
+md-input-container {
+	&.md-icon-float {
+		md-icon {
+			opacity: 0.26;
+		}
+		
+		[ng-messages] {
+			padding-left: 38px;
+		}
+	}
+	
+	&.md-input-focused {
+		md-icon {
+			opacity: 1;
+		}
+	}
+	
+	&.md-input-invalid {
+		md-icon {
+			color: rgb(244,67,54);
+			opacity: 1;
+		}
+	}
+	
+	&.md-input-has-value {
+		&:not(.md-input-invalid) {
+			&:not(.md-input-focused) {
+				md-icon {
+					color: #000;
+					opacity: 0.87;
+				}
+			}
+		}
 	}
 }

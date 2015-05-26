@@ -1,10 +1,10 @@
-[
-	{
-		"name": "home",
-		"url": "/"
+{
+	"home": {
+		"url": "/",
+		"component": "home"
 	},
-	{
-		"name": "login",
-		"url": "/login"
+	"login": {
+		"url": "/login",
+		"component": "login"
 	}
-]
+}

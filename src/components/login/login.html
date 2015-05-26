@@ -1,0 +1,42 @@
+<form novalidate ng-submit="Login.submit(loginForm)" name="loginForm" layout="row" layout-align="center">
+	<md-card>
+		<md-card-content>
+			<md-input-container class="md-icon-float">
+				<label>Username</label>
+				<md-icon md-svg-icon="/ico/person.svg" class="username"></md-icon>
+				<input type="text" name="username" ng-model="Login.form.username" ng-model-options="{debounce: {default: 500, blur: 0}}" required check-username="Login.checkUsername"/>
+				<div ng-messages="loginForm.username.$error">
+					<div ng-message="required" ng-if="loginForm.username.$error.required">required</div>
+					<div ng-message="username" ng-if="loginForm.username.$error.username">This username is not available.</div>
+				</div>
+			</md-input-container>
+			<md-input-container class="md-icon-float">
+				<label>Password</label>
+				<md-icon md-svg-icon="/ico/lock.svg" class="password"></md-icon>
+				<input type="password" name="password" ng-model="Login.form.password" required />
+				<div ng-messages="loginForm.password.$error">
+					<div ng-message="required" ng-if="loginForm.password.$error.required">required</div>
+				</div>
+			</md-input-container>
+			<md-input-container ng-if="Login.formType === 'register'">
+				<label>First Name</label>
+				<input type="text" name="firstName" ng-model="Login.form.firstName" required />
+				<div ng-messages="loginForm.firstName.$error">
+					<div ng-message="required" ng-if="loginForm.firstName.$error.required">required</div>
+				</div>
+			</md-input-container>
+			<md-input-container ng-if="Login.formType === 'register'">
+				<label>Last Name</label>
+				<input type="text" name="lastName" ng-model="Login.form.lastName" required />
+				<div ng-messages="loginForm.lastName.$error">
+					<div ng-message="required" ng-if="loginForm.lastName.$error.required">required</div>
+				</div>
+			</md-input-container>
+		</md-card-content>
+		<div class="md-actions" layout="row" layout-align="end center">
+			<a class="md-button md-default-theme" ng-if="Login.formType !== 'login'" ng-click="Login.cancel(loginForm)">Cancel<div class="md-ripple-container"></div></a>
+			<a class="md-button md-default-theme" ng-if="Login.formType !== 'register'" ng-click="Login.registerClick(loginForm)">Register<div class="md-ripple-container"></div></a>
+			<md-button type="submit" class="md-primary" ng-disabled="!loginForm.$valid">{{Login.submitLabel}}</md-button>
+		</div>
+	</md-card>
+</form>
