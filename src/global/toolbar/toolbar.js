@@ -4,7 +4,7 @@ export class ToolbarCtrl {
 	constructor($mdSidenav, $rootScope, $state, $location) {
 		var $this = this;
 
-		this.$mdSidenav = $mdSidenav;
+		$this.$mdSidenav = $mdSidenav;
 
 		$rootScope.$on('$stateControllerLoaded', function(e, ctrl, state) {
 			var navDefaults = {
@@ -17,7 +17,11 @@ export class ToolbarCtrl {
 						label: 'Back',
 						icon: 'arrow_back',
 						click: function() {
-							if (new URL(document.referrer).hostname === $location.$$host) {
+							var prev = new URL(document.referrer);
+							if (
+								prev.hostname === $location.$$host &&
+								prev.pathname !== $location.$$path
+							) {
 								window.history.back();
 							} else if (state.parent && state.parent.navigable) {
 								$state.go(state.parent, state.parent.params);

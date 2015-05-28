@@ -1,8 +1,13 @@
 export class AppCtrl {
 	$loading = true;
 
-	static $inject = ['$rootScope'];
-	constructor($rootScope) {
+	static $inject = ['$rootScope', 'User', '$cookies'];
+	constructor($rootScope, User, $cookies) {
+
+		if ($cookies['connect.sid']) {
+			User.profile();
+		}
+
 		$rootScope.$on('$stateChangeStart', () => {
 			this.$loading = true;
 		});

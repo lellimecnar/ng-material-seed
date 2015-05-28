@@ -5,8 +5,6 @@ var $gulp = require('gulp'),
 	$fs = require('fs'),
 	$path = require('path'),
 	$sync = $g.sync($gulp).sync,
-	$ext = require('replace-ext'),
-	$case = require('change-case'),
 
 	server = $g.liveServer.new('./server.js');
 
@@ -76,7 +74,9 @@ $gulp.task('watch', ['serve'], function(done) {
 	$gulp.watch('./src/**/*.styl', ['css']);
 	$gulp.watch('./src/**/*.html', ['html']);
 
-	$gulp.watch('./public/**/*', server.notify);
+	$gulp.watch('./public/**/*', {
+		readDealy: 1000
+	}, server.notify);
 
 	$gulp.watch('./server.js', server.start);
 

@@ -1,7 +1,7 @@
 module.exports = function(req, res, next) {
 	req.app.db.model('User')
 		.findOne({
-			username: req.query.username
+			username: req.params.username
 		}, function(err, user) {
 			if (!err) {
 				if (user) {
@@ -10,7 +10,7 @@ module.exports = function(req, res, next) {
 					res.json({exists: false});
 				}
 			} else {
-				res.status(500).send(err);
+				next(err);
 			}
 		});
 };

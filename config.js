@@ -18,20 +18,18 @@ System.config({
     "angular": "github:angular/bower-angular@1.3.15",
     "angular-animate": "github:angular/bower-angular-animate@1.3.15",
     "angular-aria": "github:angular/bower-angular-aria@1.3.15",
-    "angular-cookie": "github:ivpusic/angular-cookie@4.0.6",
+    "angular-cookies": "github:angular/bower-angular-cookies@1.3.15",
     "angular-material": "github:angular/bower-material@0.9.4",
     "angular-resource": "github:angular/bower-angular-resource@1.3.15",
     "angular-ui-router": "github:angular-ui/ui-router@0.2.15",
     "angular-ui-router-extras": "github:christopherthielen/ui-router-extras@0.0.13",
     "babel": "npm:babel-core@5.4.5",
     "babel-runtime": "npm:babel-runtime@5.4.5",
-    "base64": "github:beatgammit/base64-js@0.0.8",
+    "base64": "github:ninjatronic/angular-base64@2.0.5",
     "core-js": "npm:core-js@0.9.11",
     "css": "github:systemjs/plugin-css@0.1.11",
     "json": "github:systemjs/plugin-json@0.1.0",
     "ng-material-dropmenu": "github:Soopro/ng-material-dropmenu@master",
-    "oauth2": "github:seegno/angular-oauth2@2.1.0",
-    "query-string": "github:sindresorhus/query-string@2.1.0",
     "text": "github:systemjs/plugin-text@0.0.2",
     "github:angular-ui/ui-router@0.2.15": {
       "angular": "github:angular/bower-angular@1.3.15"
@@ -40,6 +38,9 @@ System.config({
       "angular": "github:angular/bower-angular@1.3.15"
     },
     "github:angular/bower-angular-aria@1.3.15": {
+      "angular": "github:angular/bower-angular@1.3.15"
+    },
+    "github:angular/bower-angular-cookies@1.3.15": {
       "angular": "github:angular/bower-angular@1.3.15"
     },
     "github:angular/bower-material@0.9.4": {

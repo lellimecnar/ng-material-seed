@@ -16,7 +16,7 @@ export class HomeCtrl {
 					label: 'An item',
 					click: function() {
 						console.log('item clicked');
-					}
+					}.bind(this)
 				}
 			]
 		}
@@ -24,19 +24,8 @@ export class HomeCtrl {
 
 	items = ['A', 'B', 'C', 'D', 'E'];
 
-	static $inject = ['User'];
-	constructor(User) {
-		User.checkUsername({
-			username: 'lellimecnar'
-		}, function(result) {
-			console.log(result);
-		});
-
-		// User.get({
-		// 	username: 'lellimecnar'
-		// }, function(result) {
-		// 	console.log(result);
-		// });
+	static $inject = [];
+	constructor() {
 	}
 
 	actionClick(e) {

@@ -1,16 +1,4 @@
 export class SidenavCtrl {
-	menuItems = [
-		{
-			label: 'Home',
-			icon: 'home',
-			click: this.homeClick.bind(this)
-		},
-		{
-			label: 'Login/Register',
-			icon: 'account_circle',
-			click: this.loginClick.bind(this)
-		}
-	];
 
 	static $inject = ['$mdSidenav', '$state'];
 	constructor($mdSidenav, $state) {
@@ -22,11 +10,8 @@ export class SidenavCtrl {
 		this.$mdSidenav('left').close();
 	}
 
-	homeClick() {
-		this.$state.go('home');
-	}
-
-	loginClick() {
-		this.$state.go('login');
+	click(key) {
+		this.close();
+		this.$state.go(key);
 	}
 }

@@ -6,5 +6,9 @@
 	"login": {
 		"url": "/login",
 		"component": "login"
+	},
+	"account": {
+		"url": "/account",
+		"component": "account"
 	}
 }

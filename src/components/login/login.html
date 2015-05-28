@@ -36,7 +36,7 @@
 		<div class="md-actions" layout="row" layout-align="end center">
 			<a class="md-button md-default-theme" ng-if="Login.formType !== 'login'" ng-click="Login.cancel(loginForm)">Cancel<div class="md-ripple-container"></div></a>
 			<a class="md-button md-default-theme" ng-if="Login.formType !== 'register'" ng-click="Login.registerClick(loginForm)">Register<div class="md-ripple-container"></div></a>
-			<md-button type="submit" class="md-primary" ng-disabled="!loginForm.$valid">{{Login.submitLabel}}</md-button>
+			<md-button type="submit" class="md-primary" ng-disabled="!loginForm.$valid || loginForm.$submitted">{{Login.submitLabel}}</md-button>
 		</div>
 	</md-card>
 </form>

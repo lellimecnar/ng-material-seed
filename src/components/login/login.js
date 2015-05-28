@@ -1,6 +1,8 @@
 export class LoginCtrl {
 	$title = 'Login';
 
+	$nav = 'back';
+
 	form = {};
 
 	formType = 'login';
@@ -9,10 +11,15 @@ export class LoginCtrl {
 
 	checkUsername = false;
 
-	static $inject = ['User', '$state'];
-	constructor(User, $state) {
+	static $inject = ['$rootScope', 'User', '$state', '$mdToast'];
+	constructor($rootScope, User, $state, $mdToast) {
+		if ($rootScope.$user) {
+			$state.go('account');
+		}
+		this.$rootScope = $rootScope;
 		this.User = User;
 		this.$state = $state;
+		this.$mdToast = $mdToast;
 	}
 
 	clear(form) {
@@ -38,7 +45,7 @@ export class LoginCtrl {
 						});
 					});
 			} else {
-				this.login(this.form);
+				this.login(this.form, form);
 			}
 		}
 	}
@@ -50,7 +57,22 @@ export class LoginCtrl {
 		this.checkUsername = true;
 	}
 
-	login(user) {
-		console.log(user);
+	login(user, form) {
+		this.$rootScope.$loading = true;
+		this.User.login(user)
+			.then((result) => {
+				this.$rootScope.$loading = false;
+
+				if (result.error) {
+					form.$submitted = false;
+					this.$mdToast.show(
+						this.$mdToast.simple()
+							.content(result.error)
+							.capsule(true)
+					);
+				} else {
+					this.$state.go('account');
+				}
+			});
 	}
 }

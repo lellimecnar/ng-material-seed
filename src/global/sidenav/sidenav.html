@@ -1,7 +1,13 @@
-<md-list-item 
-		ng-repeat="item in Sidenav.menuItems"
-		ng-click="Sidenav.close(); item.click($event)">
-	<md-icon ng-if="item.icon" md-svg-icon="ico/{{item.icon}}.svg"></md-icon>
-	<p>{{item.label}}</p>
+<md-list-item ng-click="Sidenav.click('home')">
+	<md-icon md-svg-icon="ico/home.svg"></md-icon>
+	<p>Home</p>
 </md-list-item>
 <md-divider></md-divider>
+<md-list-item ng-if="!$user" ng-click="Sidenav.click('login')">
+	<md-icon md-svg-icon="ico/account_circle.svg"></md-icon>
+	<p>Login/Register</p>
+</md-list-item>
+<md-list-item ng-if="$user" ng-click="Sidenav.click('account')">
+	<md-icon md-svg-icon="ico/account_circle.svg"></md-icon>
+	<p>My Account</p>
+</md-list-item>
