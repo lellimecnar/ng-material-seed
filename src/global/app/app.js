@@ -1,4 +1,4 @@
-export class AppCtrl {
+export default class AppCtrl {
 	$loading = true;
 
 	static $inject = ['$rootScope', 'User', '$cookies'];

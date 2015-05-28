@@ -39,6 +39,14 @@ module.exports = function($app, $passport) {
 			joined: {
 				type: Date,
 				default: Date.now
+			},
+			cover: {
+				type: String,
+				default: null
+			},
+			avatar: {
+				type: String,
+				default: null
 			}
 		}
 	}));

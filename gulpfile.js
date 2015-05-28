@@ -70,6 +70,7 @@ $gulp.task('serve', function(done) {
 });
 
 $gulp.task('watch', ['serve'], function(done) {
+	$gulp.watch('./img/**/*', ['img']);
 	$gulp.watch(['./src/**/*.js', './src/**/*.json'], ['js']);
 	$gulp.watch('./src/**/*.styl', ['css']);
 	$gulp.watch('./src/**/*.html', ['html']);

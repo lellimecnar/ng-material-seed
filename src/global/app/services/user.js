@@ -1,4 +1,4 @@
-export class User {
+export default class User {
 
 	static $inject = ['$q', '$resource', '$http', '$rootScope'];
 	constructor($q, $resource, $http, $rootScope) {

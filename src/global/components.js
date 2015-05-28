@@ -1,3 +1,3 @@
-export * from './app/app';
-export * from './sidenav/sidenav';
-export * from './toolbar/toolbar';
+export AppCtrl from './app/app';
+export SidenavCtrl from './sidenav/sidenav';
+export ToolbarCtrl from './toolbar/toolbar';

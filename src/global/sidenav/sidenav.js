@@ -1,17 +1,36 @@
-export class SidenavCtrl {
+export default class SidenavCtrl {
 
-	static $inject = ['$mdSidenav', '$state'];
-	constructor($mdSidenav, $state) {
+	static $inject = ['$mdSidenav', '$state', '$rootScope'];
+	constructor($mdSidenav, $state, $rootScope) {
 		this.$mdSidenav = $mdSidenav;
 		this.$state = $state;
+		this.$rootScope = $rootScope;
 	}
 
 	close() {
 		this.$mdSidenav('left').close();
 	}
 
-	click(key) {
+	click(state) {
 		this.close();
-		this.$state.go(key);
+
+		switch (state) {
+			case 'user':
+				if (this.$rootScope.$user) {
+					state = 'account';
+				} else {
+					state = 'login';
+				}
+				break;
+		}
+		this.$state.go(state);
+	}
+
+	coverImg(user) {
+		if (user) {
+			return 'url(' + (user.cover || '/img/default-cover.jpg') + ')';
+		} else {
+			return null;
+		}
 	}
 }

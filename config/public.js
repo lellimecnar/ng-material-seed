@@ -4,6 +4,7 @@ module.exports = function($app, $passport) {
 
 	$app.use('/', $express.static('./public'));
 	$app.use('/files', $express.static('./uploads/api'));
+	$app.use('/img', $express.static('./img'));
 
 	$app.all('/*', function(req, res, next) {
 		if (req.path.split('/').indexOf('api') >= 0) {

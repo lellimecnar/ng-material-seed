@@ -1,4 +1,4 @@
-export class ToolbarCtrl {
+export default class ToolbarCtrl {
 
 	static $inject = ['$mdSidenav', '$rootScope', '$state', '$location'];
 	constructor($mdSidenav, $rootScope, $state, $location) {

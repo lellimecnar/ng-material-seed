@@ -1,0 +1,24 @@
+md-sidenav {
+	md-list-item {
+		&.user-card {
+			cursor: default !important;
+			position: relative;
+
+			&:before {
+				content: "";
+				display: block;
+				padding-top: 55%;
+			}
+			
+			> button {
+				position: absolute;
+				bottom: 0;
+				background-color: rgba(0,0,0, 0.3);
+			}
+			
+			.md-list-item-inner {
+				color: #fff;
+			}
+		}
+	}
+}
