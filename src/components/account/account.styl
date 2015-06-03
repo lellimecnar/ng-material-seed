@@ -1,0 +1,79 @@
+body {
+	&.login,
+	&.account_edit {
+		md-card {
+			width: 400px;
+			max-width: 100%;
+		}
+	}
+	
+	&.account_edit {
+		
+		.cover {
+			position: relative;
+			margin-bottom: 70px;
+			background-size: cover;
+
+			&:before {
+				content: "";
+				display: block;
+				padding-top: 55%;
+			}
+
+			.md-button {
+				&.avatar-upload {
+					background-size: cover;
+					width: 100px;
+					height: @width;
+					border-radius: 50%;
+					overflow: hidden;
+
+					position: absolute;
+					bottom: -(@height / 2);
+					left: 20px;
+					
+					&:after {
+						content: "";
+						display: block;
+						position: absolute;
+						top: 0;
+						left: 0;
+						right: 0;
+						bottom: 0;
+						transition: all 0.4s;
+						opacity: 0;
+						background-color: rgba(255, 255, 255, 0.75);
+						background-image: url('/ico/file_upload.svg');
+						background-position: center center;
+						background-repeat: no-repeat;
+						background-size: 50%;
+						border-radius: 50%
+					}
+					
+					&:hover {
+						&:after {
+							opacity: 0.5;
+						}
+					}
+				}
+				
+				&.cover-upload {
+					background-color: rgba(255, 255, 255, 0.75) !important;
+					width: 50px;
+					height: @width;
+					position: absolute;
+					bottom: 10px;
+					right: 10px;
+					opacity: 0.5;
+					transition: all 0.4s;
+					border-radius: 50%;
+					
+					&:hover {
+						opacity: 0.95;
+					}
+				}
+			}
+		}
+
+	}
+}

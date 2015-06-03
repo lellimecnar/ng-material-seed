@@ -1,46 +1,53 @@
 export default class User {
 
-	static $inject = ['$q', '$resource', '$http', '$rootScope'];
-	constructor($q, $resource, $http, $rootScope) {
-		this.$q = $q;
+	static $inject = ['$resource', '$http', '$rootScope'];
+	constructor($resource, $http, $rootScope) {
 		this.$http = $http;
 		this.$rootScope = $rootScope;
 
-		var UserResource = $resource('/api/users/:userId', null, {
-			create: {
-				method: 'POST'
-			},
-			update: {
-				method: 'PUT'
-			},
-			get: {
-				withCredentials: true
-			},
-			profile: {
-				method: 'GET',
-				url: '/api/profile',
-				interceptor: {
-					response: (result) => {
-						if (result.status === 200) {
-							if (result.data.error) {
-								this.$rootScope.$user = null;
-							} else {
-								this.$rootScope.$user = result.data;
-							}
-						}
-
-						return result;
-					}
+		function responseInterceptor(result) {
+			if (result.status === 200) {
+				if (result.data.error) {
+					$rootScope.$user = null;
+				} else {
+					$rootScope.$user = result.data;
 				}
-			},
-			checkUsername: {
-				method: 'GET',
-				url: '/api/username/:username'
 			}
-		});
+
+			return result.data;
+		}
+
+		var UserResource = $resource('/api/user/:userId', null, {
+				create: {
+					method: 'POST'
+				},
+				update: {
+					method: 'PUT',
+					url: '/api/user',
+					interceptor: {
+						response: responseInterceptor
+					}
+				},
+				get: {
+					withCredentials: true
+				},
+				profile: {
+					method: 'GET',
+					url: '/api/profile',
+					interceptor: {
+						response: responseInterceptor
+					}
+				},
+				checkUsername: {
+					method: 'GET',
+					url: '/api/user/username/:username'
+				}
+			});
 
 		UserResource.login = this.login.bind(this);
 		UserResource.logout = this.logout.bind(this);
+
+		UserResource.profile();
 
 		return UserResource;
 	}
@@ -48,7 +55,7 @@ export default class User {
 	login(user) {
 		return this.$http({
 			method: 'POST',
-			url: '/api/login',
+			url: '/api/user/login',
 			data: user
 		}).then((result) => {
 			if (!result.data.error) {
@@ -61,7 +68,7 @@ export default class User {
 	logout() {
 		return this.$http({
 			method: 'GET',
-			url: '/api/logout'
+			url: '/api/user/logout'
 		}).then((result) => {
 			this.$rootScope.$user = null;
 			return result;

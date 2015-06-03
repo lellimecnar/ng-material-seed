@@ -1,4 +1,5 @@
 import angular from 'angular';
+import 'ng-file-upload';
 
 import * as config from 'global/app/config';
 import * as run from 'global/app/run';
@@ -8,7 +9,7 @@ import * as filters from 'global/app/filters';
 import * as directives from 'global/app/directives';
 import * as services from 'global/app/services';
 
-export var app = angular.module('app', []);
+export var app = angular.module('app', ['ngFileUpload']);
 
 angular.forEach(config, function(fn) {
 	app.config(fn(app));

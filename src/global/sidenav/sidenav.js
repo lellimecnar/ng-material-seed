@@ -1,10 +1,11 @@
 export default class SidenavCtrl {
 
-	static $inject = ['$mdSidenav', '$state', '$rootScope'];
-	constructor($mdSidenav, $state, $rootScope) {
+	static $inject = ['$mdSidenav', '$state', '$rootScope', 'User'];
+	constructor($mdSidenav, $state, $rootScope, User) {
 		this.$mdSidenav = $mdSidenav;
 		this.$state = $state;
 		this.$rootScope = $rootScope;
+		this.User = User;
 	}
 
 	close() {
@@ -23,14 +24,7 @@ export default class SidenavCtrl {
 				}
 				break;
 		}
-		this.$state.go(state);
-	}
 
-	coverImg(user) {
-		if (user) {
-			return 'url(' + (user.cover || '/img/default-cover.jpg') + ')';
-		} else {
-			return null;
-		}
+		this.$state.go(state);
 	}
 }

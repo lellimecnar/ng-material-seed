@@ -1,13 +1,18 @@
 export default class AppCtrl {
 	$loading = true;
 
-	static $inject = ['$rootScope', 'User', '$cookies'];
-	constructor($rootScope, User, $cookies) {
+	$loadingType(val) {
+		var type = 'indeterminate';
 
-		if ($cookies['connect.sid']) {
-			User.profile();
+		if (angular.isNumber(val)) {
+			type = 'determinate';
 		}
 
+		return type;
+	}
+
+	static $inject = ['$rootScope'];
+	constructor($rootScope) {
 		$rootScope.$on('$stateChangeStart', () => {
 			this.$loading = true;
 		});
@@ -15,5 +20,29 @@ export default class AppCtrl {
 		$rootScope.$on('$stateChangeSuccess', () => {
 			this.$loading = false;
 		});
+	}
+
+	avatarImg(user) {
+		if (user) {
+			return user.avatar || '/img/default-avatar.png';
+		} else {
+			return null;
+		}
+	}
+
+	coverImg(user) {
+		if (user) {
+			return user.cover || '/img/default-cover.jpg';
+		} else {
+			return null;
+		}
+	}
+
+	bgImg(src) {
+		if (src) {
+			return 'url(' + src + ')';
+		} else {
+			return '';
+		}
 	}
 }

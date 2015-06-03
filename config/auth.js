@@ -7,7 +7,7 @@ module.exports = function($app, $passport) {
 		passwordField: 'password',
 		passReqToCallback: true
 	}, function(req, username, password, done) {
-		$app.db.connection.model('User')
+		req.app.db.connection.model('User')
 			.findOne({
 				username: username
 			},
@@ -17,10 +17,20 @@ module.exports = function($app, $passport) {
 						user.verifyPassword(password, function(err, isMatch) {
 							if (!err) {
 								if (isMatch) {
-									delete user._id;
-									delete user.__v;
-									delete user.password;
-									done(null, user);
+									req.app.db.connection.model('User')
+										.findOne({
+											username: username
+										}, {
+											_id: false,
+											__v: false,
+											password: false
+										}, function(err, safeUser) {
+											if (!err) {
+												done(null, safeUser);
+											} else {
+												done(err);
+											}
+										});
 								} else {
 									done(null, false);
 								}
@@ -43,8 +53,12 @@ module.exports = function($app, $passport) {
 
 	$passport.deserializeUser(function(username, done) {
 		$app.db.connection.model('User')
-			.findOne( {
+			.findOne({
 				username: username
+			}, {
+				_id: false,
+				__v: false,
+				password: false
 			}, done);
 	});
 

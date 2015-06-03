@@ -6,7 +6,7 @@ function factory(User, $parse) {
 		require: '^ngModel',
 		link: function(scope, elem, attrs, ngModel) {
 			ngModel.$parsers.unshift(function(val) {
-				if ($parse(attrs.checkUsername)(scope)) {
+				if ($parse(attrs.checkUsername)(scope) && val) {
 					User.checkUsername({
 						username: val
 					}).$promise.then(function(result) {

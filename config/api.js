@@ -18,7 +18,11 @@ module.exports = function($app, $passport) {
 						username: req.session.passport.user
 					}, function(err, user) {
 						if (!err) {
-							next();
+							if (user) {
+								next();
+							} else {
+								res.json({error: 'Unauthorized'});
+							}
 						} else {
 							next(err);
 						}
@@ -42,11 +46,11 @@ module.exports = function($app, $passport) {
 			},
 			cover: {
 				type: String,
-				default: null
+				default: '/img/default-cover.jpg'
 			},
 			avatar: {
 				type: String,
-				default: null
+				default: '/img/default-avatar.png'
 			}
 		}
 	}));

@@ -1,8 +1,6 @@
 fullName.$import = [];
 function fullName() {
-	console.log(arguments);
 	return function(user) {
-		console.log(user);
 		if (
 			user &&
 			user.firstName &&

@@ -1,6 +1,6 @@
 module.exports = function(req, res, next) {
 	require('passport').authenticate(
-		'local', 
+		'local',
 	function(err, user, info) {
 		if (!err) {
 			if (user) {

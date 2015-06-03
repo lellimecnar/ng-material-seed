@@ -3,12 +3,16 @@
 		"url": "/",
 		"component": "home"
 	},
-	"login": {
-		"url": "/login",
-		"component": "login"
-	},
 	"account": {
 		"url": "/account",
 		"component": "account"
+	},
+	"account.edit": {
+		"url": "/account/edit",
+		"component": "account/edit"
+	},
+	"login": {
+		"url": "/login",
+		"component": "account/login"
 	}
 }

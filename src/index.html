@@ -15,7 +15,7 @@
 			}
 		</style>
 	</head>
-	<body class="{{$state.current.name}}" layout="column">
+	<body class="{{$state.current.name|snakeCase}}" layout="column">
 		<md-toolbar
 			ng-include="'global/toolbar/toolbar.html'"
 			ng-controller="ToolbarCtrl as Toolbar">
@@ -27,7 +27,7 @@
 				ng-controller="SidenavCtrl as Sidenav">
 			</md-content>
 		</md-sidenav>
-		<md-content flex layout-padding ui-view="@"></md-content>
+		<md-content flex layout-padding ui-view></md-content>
 		<md-button
 				ng-if="$ctrl.$fab && (!$ctrl.$fab.if || $ctrl.$fab.if())"
 				ng-class="$ctrl.$fab.class"
@@ -38,7 +38,8 @@
 		</md-button>
 		<md-progress-circular
 			class="app-loading"
-			md-mode="indeterminate"
+			md-mode="{{App.$loadingType($loading)}}"
+			ng-value="App.$loading"
 			ng-if="App.$loading || $loading">
 		</md-progress-circular>
 

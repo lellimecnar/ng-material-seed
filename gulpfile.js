@@ -24,6 +24,7 @@ $gulp.task('icons', function() {
 });
 
 $gulp.task('lib', ['icons'], $g.shell.task([
+	'jspm update',
 	'jspm install'
 ]));
 
@@ -70,6 +71,16 @@ $gulp.task('serve', function(done) {
 });
 
 $gulp.task('watch', ['serve'], function(done) {
+	// $g.nodemon({
+	// 	script: './server.js',
+	// 	ext: 'js',
+	// 	ignore: [
+	// 		'./src/**/*',
+	// 		'./public/**/*',
+	// 		'./node_modules/**/*'
+	// 	]
+	// });
+
 	$gulp.watch('./img/**/*', ['img']);
 	$gulp.watch(['./src/**/*.js', './src/**/*.json'], ['js']);
 	$gulp.watch('./src/**/*.styl', ['css']);

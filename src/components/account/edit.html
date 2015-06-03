@@ -1,0 +1,43 @@
+<div layout="row" layout-align="center">
+	<md-card>
+		<div class="cover" ng-style="{'background-image': 'url('+$user.cover+')'}">
+			<md-button
+					class="avatar-upload"
+					ng-style="{'background-image': 'url('+$user.avatar+')'}"
+					aria-label="Upload new Avatar"
+					ngf-select
+					ngf-change="AccountEdit.upload('avatar', $files)"
+					ngf-accept="'image/*'">
+				<md-tooltip md-delay="750">Upload new Avatar</md-tooltip>
+			</md-button>
+			<md-button
+					class="cover-upload md-icon-button"
+					aria-label="Upload new Cover"
+					ngf-select
+					ngf-change="AccountEdit.upload('cover', $files)"
+					ngf-accept="'image/*'">
+				<md-icon md-svg-icon="ico/file_upload.svg"></md-icon>
+				<md-tooltip md-delay="750">Upload new Cover</md-tooltip>
+			</md-button>
+		</div>
+		<md-card-content>
+			<form novalidate name="accountEditForm" layout layout-sm="column">
+				<md-input-container flex>
+					<label>First Name</label>
+					<input type="text" name="firstName" ng-model="AccountEdit.form.firstName" required />
+					<div ng-messages="accountEditForm.firstName.$error">
+						<div ng-message="required" ng-if="accountEditForm.firstName.$error.required">required</div>
+					</div>
+				</md-input-container>
+				<md-input-container flex>
+					<label>Last Name</label>
+					<input type="text" name="lastName" ng-model="AccountEdit.form.lastName" required />
+					<div ng-messages="accountEditForm.lastName.$error">
+						<div ng-message="required" ng-if="accountEditForm.lastName.$error.required">required</div>
+					</div>
+				</md-input-container>
+				<button style="display:none" ng-click="AccountEdit.submit(accountEditForm)"></button>
+			</form>
+		</md-card-content>
+	</md-card>
+</div>

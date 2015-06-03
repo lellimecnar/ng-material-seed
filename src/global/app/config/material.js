@@ -1,5 +1,5 @@
 import angular from 'angular';
-import 'angular-material';
+import ngMaterial from 'angular-material';
 import 'ng-material-dropmenu';
 import 'ng-material-dropmenu/ng-material-dropmenu.css!';
 

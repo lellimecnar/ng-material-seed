@@ -1,4 +1,4 @@
-export class LoginCtrl {
+export class AccountLoginCtrl {
 	$title = 'Login';
 
 	$nav = 'back';
@@ -16,6 +16,7 @@ export class LoginCtrl {
 		if ($rootScope.$user) {
 			$state.go('account');
 		}
+
 		this.$rootScope = $rootScope;
 		this.User = User;
 		this.$state = $state;
@@ -42,7 +43,7 @@ export class LoginCtrl {
 						this.login({
 							username: user.username,
 							password: this.form.password
-						});
+						}, form);
 					});
 			} else {
 				this.login(this.form, form);

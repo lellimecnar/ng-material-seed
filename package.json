@@ -5,6 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "gulp clean && gulp lib & gulp build",
     "start": "node server.js"
   },
   "repository": {
@@ -36,13 +37,13 @@
   },
   "devDependencies": {
     "del": "^1.2.0",
-    "glob": "^5.0.6",
     "gulp": "^3.8.11",
     "gulp-add-src": "^0.2.0",
     "gulp-babel": "^5.1.0",
     "gulp-file": "^0.2.0",
     "gulp-flatten": "0.0.4",
     "gulp-load-plugins": "^0.10.0",
+    "gulp-nodemon": "^2.0.3",
     "gulp-rename": "^1.2.2",
     "gulp-shell": "^0.4.1",
     "gulp-stylus": "^2.0.2",
@@ -68,6 +69,7 @@
       "angular-ui-router-extras": "github:christopherthielen/ui-router-extras@^0.0.13",
       "css": "github:systemjs/plugin-css@^0.1.11",
       "json": "github:systemjs/plugin-json@^0.1.0",
+      "ng-file-upload": "github:danialfarid/ng-file-upload@^4.2.4",
       "ng-material-dropmenu": "github:Soopro/ng-material-dropmenu@master",
       "text": "github:systemjs/plugin-text@^0.0.2"
     },

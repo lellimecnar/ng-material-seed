@@ -8,15 +8,13 @@ module.exports = function($app, $passport) {
 
 	$app.use($favicon('./favicon.ico'));
 
-	$app.use($express.static('public'));
-
 	$app.use($multer({
-		dest: './uploads',
+		dest: './files',
 		changeDest: function(dest, req, res) {
-			dest = dest.replace(/^\/?api\//,'');
-			var path = $path.join(dest, req.url);
-			$mkdir(path);
-			return path;
+			dest = $path.join(dest, req.url);
+
+			$mkdir(dest);
+			return dest;
 		}
 	}));
 
