@@ -1,14 +1,14 @@
 body {
-	&.login,
-	&.account_edit {
+	&.app_login,
+	&.app_account_edit {
 		md-card {
 			width: 400px;
 			max-width: 100%;
 		}
 	}
-	
-	&.account_edit {
-		
+
+	&.app_account_edit {
+
 		.cover {
 			position: relative;
 			margin-bottom: 70px;
@@ -31,7 +31,7 @@ body {
 					position: absolute;
 					bottom: -(@height / 2);
 					left: 20px;
-					
+
 					&:after {
 						content: "";
 						display: block;
@@ -49,14 +49,14 @@ body {
 						background-size: 50%;
 						border-radius: 50%
 					}
-					
+
 					&:hover {
 						&:after {
 							opacity: 0.5;
 						}
 					}
 				}
-				
+
 				&.cover-upload {
 					background-color: rgba(255, 255, 255, 0.75) !important;
 					width: 50px;
@@ -67,7 +67,7 @@ body {
 					opacity: 0.5;
 					transition: all 0.4s;
 					border-radius: 50%;
-					
+
 					&:hover {
 						opacity: 0.95;
 					}

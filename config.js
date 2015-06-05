@@ -27,7 +27,7 @@ System.config({
     "babel-runtime": "npm:babel-runtime@5.4.5",
     "base64": "github:ninjatronic/angular-base64@2.0.5",
     "core-js": "npm:core-js@0.9.11",
-    "css": "github:systemjs/plugin-css@0.1.11",
+    "css": "github:systemjs/plugin-css@0.1.12",
     "json": "github:systemjs/plugin-json@0.1.0",
     "ng-file-upload": "github:danialfarid/ng-file-upload@4.2.4",
     "ng-material-dropmenu": "github:Soopro/ng-material-dropmenu@master",
@@ -44,17 +44,11 @@ System.config({
     "github:angular/bower-angular-cookies@1.4.0": {
       "angular": "github:angular/bower-angular@1.4.0"
     },
-    "github:angular/bower-material@0.9.6": {
-      "angular": "github:angular/bower-angular@1.4.0",
-      "angular-animate": "github:angular/bower-angular-animate@1.4.0",
-      "angular-aria": "github:angular/bower-angular-aria@1.4.0",
-      "css": "github:systemjs/plugin-css@0.1.11"
-    },
     "github:angular/bower-material@0.9.7": {
       "angular": "github:angular/bower-angular@1.4.0",
       "angular-animate": "github:angular/bower-angular-animate@1.4.0",
       "angular-aria": "github:angular/bower-angular-aria@1.4.0",
-      "css": "github:systemjs/plugin-css@0.1.11"
+      "css": "github:systemjs/plugin-css@0.1.12"
     },
     "github:jspm/nodelibs-assert@0.1.0": {
       "assert": "npm:assert@1.3.0"
@@ -94,7 +88,7 @@ System.config({
     "github:jspm/nodelibs-util@0.1.0": {
       "util": "npm:util@0.10.3"
     },
-    "github:systemjs/plugin-css@0.1.11": {
+    "github:systemjs/plugin-css@0.1.12": {
       "clean-css": "npm:clean-css@3.1.9",
       "fs": "github:jspm/nodelibs-fs@0.1.2",
       "path": "github:jspm/nodelibs-path@0.1.0"

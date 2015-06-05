@@ -16,7 +16,7 @@ export class AccountCtrl {
 	static $inject = ['$rootScope', '$state', 'User'];
 	constructor($rootScope, $state, User) {
 		if (!$rootScope.$user) {
-			$state.go('login');
+			$state.go('app.login');
 		}
 
 		this.$state = $state;
@@ -24,13 +24,13 @@ export class AccountCtrl {
 	}
 
 	edit() {
-		this.$state.go('account.edit');
+		this.$state.go('app.account.edit');
 	}
 
 	logout() {
 		this.User.logout()
 			.then((result) => {
-				this.$state.go('home');
+				this.$state.go('app.home');
 			});
 	}
 }

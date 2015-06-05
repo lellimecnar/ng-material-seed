@@ -70,27 +70,27 @@ $gulp.task('serve', function(done) {
 	done();
 });
 
-$gulp.task('watch', ['serve'], function(done) {
-	// $g.nodemon({
-	// 	script: './server.js',
-	// 	ext: 'js',
-	// 	ignore: [
-	// 		'./src/**/*',
-	// 		'./public/**/*',
-	// 		'./node_modules/**/*'
-	// 	]
-	// });
+$gulp.task('alert', function(done) {
+	process.stdout.write('\x07');
+	done();
+})
 
+$gulp.task('watch', ['serve'], function(done) {
 	$gulp.watch('./img/**/*', ['img']);
-	$gulp.watch(['./src/**/*.js', './src/**/*.json'], ['js']);
-	$gulp.watch('./src/**/*.styl', ['css']);
-	$gulp.watch('./src/**/*.html', ['html']);
+	$gulp.watch(['./src/**/*.js', './src/**/*.json'], $sync(['js', 'alert']));
+	$gulp.watch('./src/**/*.styl', $sync(['css', 'alert']));
+	$gulp.watch('./src/**/*.html', $sync(['html', 'alert']));
 
 	$gulp.watch('./public/**/*', {
 		readDealy: 1000
 	}, server.notify);
 
 	$gulp.watch('./server.js', server.start);
+	$gulp.watch([
+		'./api',
+		'./db',
+		'./config'
+	], server.start);
 
 	done();
 });

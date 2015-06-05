@@ -1,4 +1,4 @@
-export default class ToolbarCtrl {
+export class ToolbarCtrl {
 
 	static $inject = ['$mdSidenav', '$rootScope', '$state', '$location'];
 	constructor($mdSidenav, $rootScope, $state, $location) {
@@ -18,7 +18,7 @@ export default class ToolbarCtrl {
 				} else if (state.parent && state.parent.navigable) {
 					$state.go(state.parent, state.parent.params);
 				} else {
-					$state.go('home');
+					$state.go('app.home');
 				}
 			}
 

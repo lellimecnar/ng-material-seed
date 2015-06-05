@@ -15,7 +15,7 @@ export class AccountEditCtrl {
 		if ($rootScope.$user) {
 			this.form = $rootScope.$user;
 		} else {
-			$state.go('login');
+			$state.go('app.login');
 		}
 
 		this.$rootScope = $rootScope;
@@ -34,7 +34,7 @@ export class AccountEditCtrl {
 
 			if (form.$valid) {
 				this.User.update(this.form, (result) => {
-					this.$state.go('account');
+					this.$state.go('app.account');
 				});
 			}
 		}

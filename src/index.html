@@ -17,14 +17,12 @@
 	</head>
 	<body class="{{$state.current.name|snakeCase}}" layout="column">
 		<md-toolbar
-			ng-include="'global/toolbar/toolbar.html'"
-			ng-controller="ToolbarCtrl as Toolbar">
+			ui-view="toolbar">
 		</md-toolbar>
 		<md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left">
 			<md-content
 				layout="column"
-				ng-include="'global/sidenav/sidenav.html'"
-				ng-controller="SidenavCtrl as Sidenav">
+				ui-view="sidenav">
 			</md-content>
 		</md-sidenav>
 		<md-content flex layout-padding ui-view></md-content>

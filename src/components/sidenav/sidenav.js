@@ -1,4 +1,4 @@
-export default class SidenavCtrl {
+export class SidenavCtrl {
 
 	static $inject = ['$mdSidenav', '$state', '$rootScope', 'User'];
 	constructor($mdSidenav, $state, $rootScope, User) {
@@ -18,9 +18,9 @@ export default class SidenavCtrl {
 		switch (state) {
 			case 'user':
 				if (this.$rootScope.$user) {
-					state = 'account';
+					state = 'app.account';
 				} else {
-					state = 'login';
+					state = 'app.login';
 				}
 				break;
 		}

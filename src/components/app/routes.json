@@ -1,17 +1,25 @@
 {
-	"home": {
+	"app": {
+		"url": "",
+		"abstract": true,
+		"components": {
+			"sidenav": "sidenav",
+			"toolbar": "toolbar"
+		}
+	},
+	"app.home": {
 		"url": "/",
 		"component": "home"
 	},
-	"account": {
+	"app.account": {
 		"url": "/account",
 		"component": "account"
 	},
-	"account.edit": {
+	"app.account.edit": {
 		"url": "/account/edit",
 		"component": "account/edit"
 	},
-	"login": {
+	"app.login": {
 		"url": "/login",
 		"component": "account/login"
 	}

@@ -1,4 +1,4 @@
-export default class AppCtrl {
+export class AppCtrl {
 	$loading = true;
 
 	$loadingType(val) {

@@ -1,7 +1,7 @@
 snakeCase.$import = [];
 function snakeCase() {
 	return function(str) {
-		return (str || '').replace(/[^\w]+/, '_');
+		return (str || '').replace(/[^\w]+/g, '_');
 	}
 }
 

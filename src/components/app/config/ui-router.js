@@ -91,7 +91,7 @@ export default function(app) {
 					if (angular.isDefined(component) && angular.isDefined(ctrl)) {
 						viewConfig = config.views[component.viewName];
 						viewConfig.controllerAs = ctrl.$controllerAs || viewConfig.controllerAs;
-						
+
 						if (ctrl.$template) {
 							delete viewConfig.templateUrl;
 							viewConfig.template = ctrl.$template;

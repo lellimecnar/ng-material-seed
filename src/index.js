@@ -1,13 +1,13 @@
 import angular from 'angular';
 import 'ng-file-upload';
 
-import * as config from 'global/app/config';
-import * as run from 'global/app/run';
+import * as config from 'components/app/config';
+import * as run from 'components/app/run';
 
-import * as components from 'global/components';
-import * as filters from 'global/app/filters';
-import * as directives from 'global/app/directives';
-import * as services from 'global/app/services';
+import { AppCtrl } from 'components/app/app';
+import * as filters from 'components/app/filters';
+import * as directives from 'components/app/directives';
+import * as services from 'components/app/services';
 
 export var app = angular.module('app', ['ngFileUpload']);
 
@@ -19,9 +19,7 @@ angular.forEach(run, function(fn) {
 	app.run(fn(app));
 });
 
-angular.forEach(components, function(ctrl, name) {
-	app.controller(name, ctrl);
-});
+app.controller('AppCtrl', AppCtrl);
 
 angular.forEach(filters, function(filter, name) {
 	app.filter(name, filter);
