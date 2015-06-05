@@ -1,8 +1,8 @@
 <md-list-item
 		ng-class="{'md-2-line': $user, 'user-card': $user}"
-		ng-style="{'background-image': App.bgImg(App.coverImg($user))}"
+		ng-style="{'background-image': 'url('+$user.cover+')'}"
 		ng-click="Sidenav.click('user')">
-	<img ng-if="$user" ng-src="{{App.avatarImg($user)}}" class="md-avatar" alt="{{$user|fullName}}" />
+	<img ng-if="$user" ng-src="{{$user.avatar}}" class="md-avatar" alt="{{$user|fullName}}" />
 	<div class="md-list-item-text" ng-if="$user">
 		<h3>{{$user|fullName}}</h3>
 		<p>{{$user.username}}</p>

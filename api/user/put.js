@@ -1,9 +1,12 @@
 user.$auth = true;
 function user(req, res, next) {
+	console.log(req.body);
 	req.app.db.model('User')
 		.findOneAndUpdate({
 			username: req.session.passport.user
-		}, req.body, function(err, user) {
+		}, {
+			$set: req.body
+		}, function(err, user) {
 			if (!err) {
 				req.app.db.model('User')
 					.findById(user._id, {

@@ -62,7 +62,7 @@ export class AccountEditCtrl {
 					var data = {};
 					data[type] = uploadResult.path;
 					this.User.update(data, (result) => {
-						this.$rootScope.$user[type] = result[type];
+						this.form[type] =  this.$rootScope.$user[type] = result[type];
 					});
 				});
 			});
