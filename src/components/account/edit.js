@@ -10,8 +10,8 @@ export class AccountEditCtrl {
 		}
 	];
 
-	static $inject = ['$rootScope', '$state', 'Upload', 'User'];
-	constructor($rootScope, $state, Upload, User) {
+	static $inject = ['$rootScope', '$state', 'Upload', 'User', 'Form'];
+	constructor($rootScope, $state, Upload, User, Form) {
 		if ($rootScope.$user) {
 			this.form = $rootScope.$user;
 		} else {
@@ -22,6 +22,7 @@ export class AccountEditCtrl {
 		this.$state = $state;
 		this.Upload = Upload;
 		this.User = User;
+		this.Form = Form;
 	}
 
 	submit(form) {
@@ -41,11 +42,7 @@ export class AccountEditCtrl {
 	}
 
 	save() {
-		var selector = 'form[name="accountEditForm"]',
-			el = document.querySelector(selector),
-			$el = angular.element(el),
-			ctrl = $el.data('$formController');
-
+		var ctrl = this.Form.getCtrl('accountEditForm');
 		this.submit(ctrl);
 	}
 

@@ -15,10 +15,10 @@
 		"url": "/account",
 		"component": "account"
 	},
-	"app.account.edit": {
-		"url": "/account/edit",
-		"component": "account/edit"
-	},
+		"app.account.edit": {
+			"url": "/edit",
+			"component": "account/edit"
+		},
 	"app.login": {
 		"url": "/login",
 		"component": "account/login"

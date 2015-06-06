@@ -85,13 +85,6 @@ $gulp.task('watch', ['serve'], function(done) {
 		readDealy: 1000
 	}, server.notify);
 
-	$gulp.watch('./server.js', server.start);
-	$gulp.watch([
-		'./api',
-		'./db',
-		'./config'
-	], server.start);
-
 	done();
 });
 
